@@ -1,0 +1,45 @@
+swagger: "2.0"
+info:
+  title: App2 REST API
+  version: 1.0.0
+  description: App2 REST API
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /api:
+    post:
+      tags:
+        - Api
+      operationId: app2.apis.apis.send_message
+      summary: Send message
+      parameters:
+        - $ref: '#/parameters/api_body'
+      responses:
+        '200':
+          $ref: '#responses/json_response'
+        '400':
+          description: Processing error
+        '403':
+          description: Invalid parameters
+
+parameters:
+  api_body:
+    name: api_body
+    in: body
+    description: JSON object of the message
+    required: true
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          default: hello
+
+responses:
+  json_response:
+    description: Return result in JSON format
+    schema:
+      type: object
